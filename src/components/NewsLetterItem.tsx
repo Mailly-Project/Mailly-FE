@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import NewsLetter from '../types/NewsLetter.ts';
+import CText from './common/CText.tsx';
 
 interface NewsLetterItemProps {
   item: NewsLetter;
@@ -15,8 +16,12 @@ function NewsLetterItem({item}: NewsLetterItemProps) {
     <View style={styles.card}>
       <View style={styles.topRow}>
         <View style={styles.textContainer}>
-          <Text style={styles.title} numberOfLines={2}>{item.title}</Text>
-          <Text style={styles.description} numberOfLines={2}>{item.description}</Text>
+          <CText style={styles.title} weight="Bold" numberOfLines={2}>
+            {item.title}
+          </CText>
+          <CText style={styles.description} numberOfLines={2}>
+            {item.description}
+          </CText>
         </View>
         {item.thumbnail && (
           <Image source={{uri: item.thumbnail}} style={styles.thumbnail} />
@@ -25,13 +30,13 @@ function NewsLetterItem({item}: NewsLetterItemProps) {
 
       <TouchableOpacity onPress={() => toggleExpand()} activeOpacity={0.8}>
         <View style={styles.bottomRow}>
-          <Text
+          <CText
             style={styles.summary}
             numberOfLines={isExpanded ? undefined : 1}>
             {item.content}
-          </Text>
+          </CText>
 
-          <Text>{isExpanded ? '▲' : '▼'}</Text>
+          <CText>{isExpanded ? '▲' : '▼'}</CText>
         </View>
       </TouchableOpacity>
     </View>
@@ -59,7 +64,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 16,
-    fontWeight: '700',
     color: '#222',
     marginBottom: 4,
   },
