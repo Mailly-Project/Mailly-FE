@@ -1,11 +1,10 @@
 import React from 'react';
-import {
-  View,
-  FlatList,
-  StyleSheet,
-} from 'react-native';
+import {View, FlatList, StyleSheet, SafeAreaView} from 'react-native';
 import NewsLetter from '../types/NewsLetter.ts';
 import NewsLetterItem from '../components/NewsLetterItem.tsx';
+import {useColors} from '../hooks/useColors.ts';
+import {ThemeColors} from '../constants/colors.ts';
+import CText from "../components/common/CText.tsx";
 
 const dummyData: NewsLetter[] = [
   {
@@ -26,21 +25,35 @@ const dummyData: NewsLetter[] = [
 ];
 
 function FeedScreen() {
+  const colors = useColors();
+  const styles = createStyles(colors);
   return (
-    <FlatList
-      data={dummyData}
-      keyExtractor={item => item.id.toString()}
-      renderItem={({item}) => <NewsLetterItem item={item} />}
-      ItemSeparatorComponent={() => <View style={styles.separator} />}
-      contentContainerStyle={{padding: 16}}
-    />
+    <SafeAreaView style={styles.container}>
+      <CText style={styles.headerTitle} weight="Bold">피드</CText>
+      <FlatList
+        data={dummyData}
+        keyExtractor={item => item.id.toString()}
+        renderItem={({item}) => <NewsLetterItem item={item} />}
+        ItemSeparatorComponent={() => <View style={styles.separator} />}
+        contentContainerStyle={{padding: 16}}
+      />
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  separator: {
-    height: 16,
-  },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: colors.background,
+    },
+    headerTitle: {
+      padding: 16,
+      fontSize: 24,
+    },
+    separator: {
+      height: 16,
+    },
+  });
 
 export default FeedScreen;

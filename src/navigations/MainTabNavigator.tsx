@@ -6,12 +6,22 @@ import FeedScreen from '../screens/FeedScreen.tsx';
 import MailListScreen from '../screens/MailListScreen.tsx';
 import ProfileScreen from '../screens/ProfileScreen.tsx';
 import Icon from '@react-native-vector-icons/material-design-icons';
+import {ThemeColors} from '../constants/colors.ts';
+import {useColors} from '../hooks/useColors.ts';
 
 const Tab = createBottomTabNavigator();
 
 function MainTabNavigator() {
+  const colors = useColors();
+  const styles = createStyles(colors);
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{
+        tabBarStyle: {
+          backgroundColor: colors.background,
+        },
+        headerShown: false,
+      }}>
       <Tab.Screen
         name={mainNavigations.FEED}
         component={FeedScreen}
@@ -46,6 +56,6 @@ function MainTabNavigator() {
   );
 }
 
-const styles = StyleSheet.create({});
+const createStyles = (colors: ThemeColors) => StyleSheet.create({});
 
 export default MainTabNavigator;

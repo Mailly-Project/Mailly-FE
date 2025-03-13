@@ -2,12 +2,16 @@ import React, {useState} from 'react';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import NewsLetter from '../types/NewsLetter.ts';
 import CText from './common/CText.tsx';
+import {ThemeColors} from '../constants/colors.ts';
+import {useColors} from '../hooks/useColors.ts';
 
 interface NewsLetterItemProps {
   item: NewsLetter;
 }
 
 function NewsLetterItem({item}: NewsLetterItemProps) {
+  const colors = useColors();
+  const styles = createStyles(colors);
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpand = () => setIsExpanded(prev => !prev);
@@ -43,51 +47,52 @@ function NewsLetterItem({item}: NewsLetterItemProps) {
   );
 }
 
-const styles = StyleSheet.create({
-  card: {
-    backgroundColor: '#fff',
-    padding: 16,
-    borderRadius: 12,
-    shadowColor: '#000',
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-    shadowOffset: {width: 0, height: 2},
-  },
-  topRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 12,
-  },
-  textContainer: {
-    flex: 1,
-    marginRight: 12,
-  },
-  title: {
-    fontSize: 16,
-    color: '#222',
-    marginBottom: 4,
-  },
-  description: {
-    fontSize: 14,
-    color: '#555',
-  },
-  thumbnail: {
-    width: 80,
-    height: 80,
-    borderRadius: 8,
-    backgroundColor: '#eee',
-  },
-  bottomRow: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-  },
-  summary: {
-    fontSize: 14,
-    color: '#444',
-    flex: 1,
-    marginRight: 8,
-  },
-});
+const createStyles = (colors: ThemeColors) =>
+  StyleSheet.create({
+    card: {
+      backgroundColor: colors.boxBackground,
+      padding: 16,
+      borderRadius: 12,
+      shadowColor: '#000',
+      shadowOpacity: 0.05,
+      shadowRadius: 4,
+      shadowOffset: {width: 0, height: 2},
+    },
+    topRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginBottom: 12,
+    },
+    textContainer: {
+      flex: 1,
+      marginRight: 12,
+    },
+    title: {
+      fontSize: 16,
+      color: colors.text,
+      marginBottom: 4,
+    },
+    description: {
+      fontSize: 14,
+      color: colors.description,
+    },
+    thumbnail: {
+      width: 80,
+      height: 80,
+      borderRadius: 8,
+      backgroundColor: '#eee',
+    },
+    bottomRow: {
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      justifyContent: 'space-between',
+    },
+    summary: {
+      fontSize: 14,
+      color: colors.description,
+      flex: 1,
+      marginRight: 8,
+    },
+  });
 
 export default NewsLetterItem;
