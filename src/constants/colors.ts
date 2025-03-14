@@ -6,8 +6,8 @@ export const LightColors = {
 };
 
 export const DarkColors = {
-  background: '#242424',
-  boxBackground: '#121212',
+  background: '#181818',
+  boxBackground: '#282828',
   text: '#FFFFFF',
   primary: '#0A84FF',
   description: '#AAAAAA',

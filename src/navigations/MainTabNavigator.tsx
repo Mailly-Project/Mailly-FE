@@ -18,7 +18,7 @@ function MainTabNavigator() {
     <Tab.Navigator
       screenOptions={{
         tabBarStyle: {
-          backgroundColor: colors.background,
+          backgroundColor: colors.boxBackground,
         },
         headerShown: false,
       }}>
