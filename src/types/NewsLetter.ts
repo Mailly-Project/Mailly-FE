@@ -4,6 +4,7 @@ interface NewsLetter {
   description: string;
   content: string;
   thumbnail?: string;
-};
+  date: string;
+}
 
 export default NewsLetter;
