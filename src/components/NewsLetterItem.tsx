@@ -4,6 +4,7 @@ import NewsLetter from '../types/NewsLetter.ts';
 import CText from './common/CText.tsx';
 import {ThemeColors} from '../constants/colors.ts';
 import {useColors} from '../hooks/useColors.ts';
+import BoxView from "./common/BoxView.tsx";
 
 interface NewsLetterItemProps {
   item: NewsLetter;
@@ -17,7 +18,7 @@ function NewsLetterItem({item}: NewsLetterItemProps) {
   const toggleExpand = () => setIsExpanded(prev => !prev);
 
   return (
-    <View style={styles.card}>
+    <BoxView>
       <View style={styles.topRow}>
         <View style={styles.textContainer}>
           <CText style={styles.title} weight="Bold" numberOfLines={2}>
@@ -43,21 +44,12 @@ function NewsLetterItem({item}: NewsLetterItemProps) {
           <CText>{isExpanded ? '▲' : '▼'}</CText>
         </View>
       </TouchableOpacity>
-    </View>
+    </BoxView>
   );
 }
 
 const createStyles = (colors: ThemeColors) =>
   StyleSheet.create({
-    card: {
-      backgroundColor: colors.boxBackground,
-      padding: 16,
-      borderRadius: 12,
-      shadowColor: '#000',
-      shadowOpacity: 0.05,
-      shadowRadius: 4,
-      shadowOffset: {width: 0, height: 2},
-    },
     topRow: {
       flexDirection: 'row',
       justifyContent: 'space-between',
