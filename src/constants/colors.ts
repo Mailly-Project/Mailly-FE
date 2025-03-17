@@ -3,6 +3,7 @@ export const LightColors = {
   boxBackground: '#FFFFFF',
   text: '#222222',
   description: '#666666',
+  divider: '#EEEEEE',
 };
 
 export const DarkColors = {
@@ -11,6 +12,7 @@ export const DarkColors = {
   text: '#FFFFFF',
   primary: '#0A84FF',
   description: '#AAAAAA',
+  divider: '#FFFFFF1F',
 };
 
 export type ThemeColors = typeof LightColors;
